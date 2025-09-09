@@ -7,8 +7,8 @@ const config = {
     ...
     // Overrides default routes directory to utils/routes. Comment this out if you have a project that needs to handle routes differently from the templates provided.
     files: {
-      routes: "utils/routes",
-      appTemplate: "utils/app.html"
+      routes: "util-routing/routes",
+      appTemplate: "util-routing/app.html"
     },
   },
 };
