@@ -1,2 +1,2 @@
-import { getEndpoint as GET } from '/utils/routing.js'
+import { getEndpoint as GET } from '/util-routing/routing.js'
 export { GET }

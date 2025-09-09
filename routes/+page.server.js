@@ -1,2 +1,2 @@
-import { loadAllEndpoints as load } from "/utils/routing";
+import { loadAllEndpoints as load } from "/util-routing/routing";
 export { load }
