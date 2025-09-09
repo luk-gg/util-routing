@@ -24,7 +24,7 @@ export const writeAllEndpoints = async () => {
 
             // Write the default export as individual json files
             for (const obj of fileData.default) {
-                writeJson(`./json/en/${fileName}`, obj.id, obj)
+                writeJson(`./json/en/${fileName}`, obj.id || obj.Id, obj)
             }
         }
         else {
@@ -47,5 +47,5 @@ function writeJson(dir, fileName, data) {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
     }
-    fs.writeFileSync(`${dir}/${fileName.toLowerCase()}.json`, JSON.stringify(data))
+    fs.writeFileSync(`${dir}/${fileName.toString().toLowerCase()}.json`, JSON.stringify(data))
 }
