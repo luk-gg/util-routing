@@ -2,10 +2,19 @@ import path from "path"
 import fs from "fs"
 import { json } from '@sveltejs/kit'
 
-export const getEndpoint = async ({ params }) => {
+export const getEndpoint = async ({ params, url }) => {
     if (params.file === "favicon.ico") return json({})
-    const { default: file } = await import(`../src/lib/${params.file}.js`)
-    return json(file)
+    const { default: data } = await import(`/src/lib/${params.file}.js`)
+    const searchParams = [...url.searchParams]
+    if (searchParams.length) {
+        if (Array.isArray(data)) {
+            return json(data.filter(entry => searchParams.every(([param, value]) => entry[param] == value)))
+        }
+        else if (typeof data === "object") {
+            return json(data[url.searchParams.get("key")])
+        }
+    }
+    return json(data)
 }
 
 export const writeAllEndpoints = async () => {
