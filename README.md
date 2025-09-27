@@ -36,6 +36,9 @@ Assets like game textures and models can be placed in `game/client/{assetFolderN
 If your output is an object, such as `{ 123: data, 124: data }`, you can use `key` such as [https://localhost:5173/items/?key=123]().  
 If your output is an array of objects, you can *shallowly* filter by keys (inclusive), i.e. [https://localhost:5173/weapons/?cost=500&attack=1000]().  
 
+> [!NOTE]
+> Even if you are requesting only one entry (like `?id=1`), *all* entries will be computed before filtering down to that single entry. Therefore if there is an error in *any* entry (even if its not the one you requested), the server will throw an error and not render the route.
+
 ### Generating output JSONs
 To output json files, visit `/output` or `npm run output` (assumes port 5173 is open). Files will be created in `json/en` (multiple locales currently not supported). By default, every javascript file will have its default export generated into a single JSON file (`src/lib/items.js default()` → `json/en/items.json`).  
 
