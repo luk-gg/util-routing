@@ -3,7 +3,7 @@ Commonly used routing functions throughout LUK.GG APIs.
 
 ## Setup
 ### Cloning an existing project
-Simply add/update submodules via `git submodule update --recursive`.
+Simply add/update submodules via `git submodule update --init --recursive`.
 
 ### Building a new SvelteKit project
 Include the submodule via `git submodule add https://github.com/luk-gg/util-routing` and modify `svelte.config.js` to include the following:
