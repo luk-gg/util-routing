@@ -23,7 +23,7 @@ const config = {
   },
 };
 ```
-You can delete SvelteKit's `src/routes` folder now.
+You can delete SvelteKit's `src/routes` folder now. Every javascript file directly in `src/lib` will act as a route.
 
 ### Adding game data
 Game data is typically placed in `game/client` or `game/server` to allow import aliases with `$client/{path}` and `$server/{path}` (see [example](https://github.com/luk-gg/bpsr-api/blob/main/src/lib/items.js#L2)).  
@@ -31,10 +31,8 @@ Assets like game textures and models can be placed in `game/client/{assetFolderN
 
 ## Usage
 `npm i` and `npm run dev` to start the vite server.  
-Every javascript file directly in `src/lib` will be listed as a route at [https://localhost:5173]().  
 
-### URL Search Params
-URL Search Params can be used to filter output data.  
+### Filtering output using URL Search Params
 If your output is an object, such as `{ 123: data, 124: data }`, you can use `key` such as [https://localhost:5173/items/?key=123]().  
 If your output is an array of objects, you can *shallowly* filter by keys (inclusive), i.e. [https://localhost:5173/weapons/?cost=500&attack=1000]().  
 
@@ -45,7 +43,7 @@ When outputting arrays of objects, you can optionally generate a "brief" version
 
 Use the named export `entries_brief` to override the default export (`src/lib/items.js entries_brief()` → `json/en/items.json`). [entries_brief() definition example](https://github.com/luk-gg/saofd-api/blob/main/src/lib/utils/index.js#L5) and [usage example](https://github.com/luk-gg/saofd-api/blob/main/src/lib/accessories.js#L42).
 
-The "full" version of the data will now be output into individual files, using the key `id`/`Id`, such as (`src/lib/items.js id:123` → `json/en/items/123.json`).
+The "full"/verbose version of the data will now be output into **individual files**, using the key `id`/`Id`, such as (`src/lib/items.js id:123` → `json/en/items/123.json`).
 
 ## Reasoning for including a Vite server
 Vite includes a convenient function [import.meta.glob](https://vite.dev/guide/features.html#glob-import) which allows use of regex to import multiple files.  
