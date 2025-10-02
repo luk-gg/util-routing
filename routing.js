@@ -32,8 +32,15 @@ export const writeAllEndpoints = async () => {
             writeJson(`./json/en`, fileName, fileData.entries_brief)
 
             // Write the default export as individual json files
-            for (const obj of fileData.default) {
-                writeJson(`./json/en/${fileName}`, obj.id || obj.Id, obj)
+            if (Array.isArray(fileData.default)) {
+                for (const obj of fileData.default) {
+                    writeJson(`./json/en/${fileName}`, obj.id || obj.Id, obj)
+                }
+            }
+            else if (typeof fileData.default === "object") {
+                for (const key in fileData.default) {
+                    writeJson(`./json/en/${fileName}`, key, fileData.default[key])
+                }
             }
         }
         else {
